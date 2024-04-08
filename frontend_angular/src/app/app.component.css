@@ -1,0 +1,141 @@
+.title{
+    background-color: antiquewhite;
+    color: rgb(33, 29, 29);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1{
+    margin: 0 auto;
+}
+
+.logout{
+    display: block;
+}
+
+.main{
+    border: lightgoldenrodyellow solid 1px;
+    border-radius: 10px;
+    padding: 20px;
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+h3{
+    font-size: 24px;
+    text-align: center;
+    width: 60vw;
+}
+
+.form{
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+input{
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+select {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+.update-btn, .select-btn, .logout, .delete-btn {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 10px;
+    margin-top: 10px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+.update-btn{
+    background-color: #4CAF50;
+}
+
+.select-btn, .logout{
+    background-color: #0f86c6;
+}
+
+.delete-btn{
+    background-color: #fc3e3e;
+}
+
+
+.list-title{
+    color: rgb(33, 29, 29);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.employee_list th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.employee_list td {
+    background-color: #fff;
+}
+
+.employee_list td:last-child {
+    text-align: center;
+}
+
+.select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    appearance: none;
+}
+
+.input {
+
+}
+
+.todo-name{
+    padding: 10px;
+}

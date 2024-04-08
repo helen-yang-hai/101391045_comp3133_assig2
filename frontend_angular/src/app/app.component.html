@@ -1,0 +1,200 @@
+<div class="title">
+  <h1>{{ title }}</h1>
+  <button (click)="logout()" class="logout">Log Out</button>
+</div>
+
+<!--Employee List-->
+<!--'/employees'-->
+<div class="main" *ngIf="isEmployeesRoute()">
+  <div class="list-title">
+    <h3>Employee List</h3>
+    <button class="select-btn" routerLink="/add-employee">Add Employee</button>
+  </div>
+  <ng-container *ngIf="error">
+    <div class="error">
+      <p>Error: {{ error }}</p>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="employees">
+      <table>
+        <thead>
+          <tr class="employee_list">
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let employee of employees" class="employee_list">
+            <td>{{ employee.first_name }}</td>
+            <td>{{ employee.last_name }}</td>
+            <td>{{ employee.email }}</td>
+            <td>
+              <button class="update-btn" (click)="onSelectUpdate(employee)">Update</button>
+              <button class="select-btn" (click)="onSelectView(employee)">View</button>
+              <button class="delete-btn" (click)="onSelectDelete(employee)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </ng-container>
+</div>
+
+
+<!--View Employee Details-->
+<!--'/view-employee/:_id'-->
+<div class="main" *ngIf="isViewEmployeeRoute()">
+  <h3>Employee Detail</h3>
+  <ng-container *ngIf="error">
+    <div class="error">
+      <p>Error: {{ error }}</p>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="selectedEmployee">
+    <div class="todo-container">
+      <p class="todo-name">Employee First Name: {{ selectedEmployee.first_name }}</p>
+      <p class="todo-name">Employee Last Name: {{ selectedEmployee.last_name }}</p>
+      <p class="todo-name">Employee Email: {{ selectedEmployee.email }}</p>
+      <button class="select-btn" routerLink="/employees">Back</button>
+    </div>
+  </ng-container>
+  
+</div>
+
+
+<!--Update Employee-->
+<!--'/update-employee/:_id'-->
+<div class="main" *ngIf="isUpdateEmployeeRoute()">
+  <h3>Update Employee Detail</h3>
+  <ng-container *ngIf="error">
+    <div class="error">
+      <p>Error: {{ error }}</p>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="selectedEmployee">
+    <form class="form" [formGroup]="employeeForm" (ngSubmit)="updateEmployeeById(selectedEmployee._id)">
+      <label>First Name:</label>
+      <input class="input" type="text" name="first_name" formControlName="first_name" placeholder="{{selectedEmployee.first_name}}">
+      <br/>
+      <label>Last Name:</label>
+      <input class="input" type="text" name="last_name"  formControlName="last_name" placeholder="{{selectedEmployee.last_name}}">
+      <br/>
+      <label>Email:</label>
+      <input class="input" type="text" name="email"  formControlName="email" placeholder="{{selectedEmployee.email}}">
+      <br/>
+      <label>Gender:</label>
+      <select class="input" name="gender" formControlName="gender">
+        <option value="">Please select the gender</option>
+        <option value="Female">Female</option>
+        <option value="Male">Male</option>
+        <option value="Other">Other</option>
+      </select>
+      <br/>
+      <label>Salary:</label>
+      <input class="input" type="number" name="salary"  formControlName="salary" placeholder="{{selectedEmployee.salary}}">
+      <br/>
+      <button type="submit" class="update-btn">Update</button>
+      <button class="delete-btn" routerLink="/employees">Cancel</button>
+    </form>
+  </ng-container>
+</div>
+
+
+<!--Add New Employee-->
+<!--'/add-employee-->
+<div class="main" *ngIf="isAddEmployeeRoute()">
+  <h3>Add New Employee</h3>
+  <ng-container *ngIf="error">
+    <div class="error">
+      <p>Error: {{ error }}</p>
+    </div>
+  </ng-container>
+
+  <ng-container>
+    <form class="form" [formGroup]="employeeForm" (ngSubmit)="addNewEmployee()">
+      <label>First Name: </label>
+      <input class="input" type="text" name="first_name" placeholder="Enter First Name" formControlName="first_name">
+      <br/>
+      <label>Last Name: </label>
+      <input class="input" type="text" name="last_name" placeholder="Enter Last Name" formControlName="last_name">
+      <br/>
+      <label>Email: </label>
+      <input class="input" type="text" name="email" placeholder="Enter Email" formControlName="email">
+      <br/>
+      <label>Gender: </label>
+      <select class="input" name="gender" formControlName="gender">
+        <option value="">Please select the gender</option>
+        <option value="Female">Female</option>
+        <option value="Male">Male</option>
+        <option value="Other">Other</option>
+      </select>
+      <br/>
+      <label>Salary: </label>
+      <input class="input" type="number" name="salary" placeholder="Enter Salary" formControlName="salary">
+      <br/>
+      <button type="submit" class="update-btn">Add</button>
+      <button class="delete-btn" routerLink="/employees">Cancel</button>
+    </form>
+  </ng-container>
+</div>
+
+
+
+<!--Login-->
+<!--''-->
+<div class="main" *ngIf="isLoginRoute()">
+  <h3>Login</h3>
+  <ng-container *ngIf="error">
+    <div class="error">
+      <p>Error: {{ error }}</p>
+    </div>
+  </ng-container>
+
+  <ng-container>
+    <form class="form" [formGroup]="userForm" (ngSubmit)="login(username, password)">
+      <label>Username: </label>
+      <input class="input" type="text" [(ngModel)]="username" name="username" placeholder="Enter Username" formControlName="username">
+      <br/>
+      <label>Password: </label>
+      <input class="input" type="text" [(ngModel)]="password" name="password" placeholder="Enter Password" formControlName="password">
+      <br/>
+      <button type="submit" class="update-btn">Login</button>
+      <button class="select-btn" routerLink="/signup">Signup</button>
+    </form>
+  </ng-container>
+  
+</div>
+
+
+<!--Signup-->
+<!--'/signup'-->
+<div class="main" *ngIf="isSignupRoute()">
+  <h3>Sign Up</h3>
+  <ng-container *ngIf="error">
+    <div class="error">
+      <p>Error: {{ error }}</p>
+    </div>
+  </ng-container>
+
+  <ng-container>
+    <form class="form" [formGroup]="userForm" (ngSubmit)="signup(username, email, password)">
+      <label>Username: </label>
+      <input class="input" type="text" [(ngModel)]="username" name="username" placeholder="Enter Username" formControlName="username">
+      <br/>
+      <label>Email: </label>
+      <input class="input" type="text" [(ngModel)]="email" name="email" placeholder="Enter Email" formControlName="email">
+      <br/>
+      <label>Password: </label>
+      <input class="input" type="text" [(ngModel)]="password" name="password" placeholder="Enter Password" formControlName="password">
+      <br/>
+      <button type="submit" class="update-btn">Sign Up</button>
+      <button class="select-btn" routerLink="/">Back</button>
+    </form>
+  </ng-container>
+  
+</div>
