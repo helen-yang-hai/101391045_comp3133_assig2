@@ -206,6 +206,7 @@ export class AppComponent implements OnInit{
         password: password
       }
     }).subscribe(({data}: any) => {
+      this.userForm.reset()
       this.router.navigate(['/']);
     }, (error) => {
       this.error = error
